@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Pod request access landing page</title>
+  </head>
+  <body>
+    <main>
+      <img
+        src="assets/desktop/bg-pattern-dots.svg"
+        alt="bg dot pattern"
+        class="bg-dot-pattern-img"
+      />
+      <picture>
+        <source
+          srcset="assets/desktop/image-host.jpg"
+          media="(min-width: 1024px)"
+        />
+        <source
+          srcset="assets/tablet/image-host.jpg"
+          media="(min-width: 768px)"
+        />
+        <img
+          src="assets/mobile/image-host.jpg"
+          alt="Description of the image"
+        />
+      </picture>
+      <section class="content">
+        <img
+          src="assets/desktop/logo.svg"
+          alt="company log"
+          class="company-logo"
+        />
+        <div class="content-inner">
+          <div class="content-text">
+            <h1>Publish your podcasts <span>everywhere.</span></h1>
+            <p>
+              Upload your audio to Pod with a single click. We’ll then
+              distribute your podcast to Spotify, Apple Podcasts, Google
+              Podcasts, Pocket Casts and more!
+            </p>
+          </div>
+          <div class="content-services">
+            <img
+              src="assets/desktop/spotify.svg"
+              alt="spotify logo"
+              class="content-service-logo1"
+            />
+            <img
+              src="assets/desktop/apple-podcast.svg"
+              alt="apple logo"
+              class="content-service-logo2"
+            />
+            <img
+              src="assets/desktop/google-podcasts.svg"
+              alt="google logo"
+              class="content-service-logo3"
+            />
+            <img
+              src="assets/desktop/pocket-casts.svg"
+              alt="pocket cast logo"
+              class="content-service-logo4"
+            />
+          </div>
+          <div class="content-cta">
+            <form>
+              <input
+                type="email"
+                placeholder="Email address"
+                class="email-input"
+                required
+              />
+            </form>
+            <button>Request Access</button>
+           <span>Oops! Please check your eamil</span>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  document.querySelector("button").addEventListener("click", function (e) {
+    e.preventDefault(); // Prevent form submission
+
+    const emailInput = document.querySelector("input[type='email']");
+    const errorSpan = document.querySelector(".content-cta span");
+
+    // Regular expression for validating email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailInput.value.trim()) {
+      // If the email field is empty
+      showError(emailInput, errorSpan, "Oops! Please add your email");
+    } else if (!emailRegex.test(emailInput.value.trim())) {
+      // If the email is not valid
+      showError(emailInput, errorSpan, "Oops! Please check your email");
+    } else {
+      // If the email is valid, clear the error
+      clearError(emailInput, errorSpan, emailInput);
+      alert("Email submitted successfully!");
+    }
+  });
+
+  function showError(input, span, message) {
+    input.style.border = "2px solid #fb3e3e"; // Add red border to input
+    span.textContent = message; // Set error message
+    span.style.display = "block"; // Show the error span
+  }
+
+  function clearError(input, span, emailInput) {
+    input.style.border = ""; // Reset border
+    span.style.display = "none"; // Hide the error span
+    emailInput.value = "";
+  }
+});
+
+</script>
